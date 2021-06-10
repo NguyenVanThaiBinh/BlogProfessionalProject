@@ -38,17 +38,17 @@
             type="text/css"
             media="all"
     />
-    <style>
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        .column {
-            float: left;
-            width: 50%;
-        }
-    </style>
+<%--    <style>--%>
+<%--        .row:after {--%>
+<%--            content: "";--%>
+<%--            display: table;--%>
+<%--            clear: both;--%>
+<%--        }--%>
+<%--        .column {--%>
+<%--            float: left;--%>
+<%--            width: 50%;--%>
+<%--        }--%>
+<%--    </style>--%>
 </head>
 <body id="top">
 <div class="wrapper row0">
@@ -64,7 +64,7 @@
                 <a href="https://www.google.com/" title="Help Centre"><i class="far fa-life-ring"></i></a>
             </li>
             <li>
-                <a href="register-blog" title="Logout"><i class="fas fa-sign-in-alt"></i></a>
+                <a href="home" title="Logout"><i class="fas fa-sign-in-alt"></i></a>
             </li>
             <li>
                 <a href="login-blog" title="Sign Up"><i class="fas fa-edit"></i></a>
@@ -294,7 +294,7 @@
             </p>
         </div>
         <div id="latest_1" class="group">
-            <div class="row">
+            <div id="content" class="row">
                 <c:forEach begin="0" end="3"  var="user" items="${PostUpList}">
                     <div class="column">
                         <article style="margin-bottom: 5em">
@@ -322,12 +322,17 @@
 
         </div>
         <br><br>
-        <footer class="center">
-            <a class="btn" href="#"
-            >View More Posts <i class="fas fa-angle-right"></i
-            ></a>
-        </footer>
+
     </section>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination" style="margin:  auto;width: 0%;padding-bottom: 2em;">
+
+            <c:forEach begin="1" end="${endP}" var="i">
+                <button style="margin-right: 1em;" class="page-item btn btn-primary" value="${(i-1)*4}" onclick="loadMore(this.value)">${i}</button>
+
+            </c:forEach>
+        </ul>
+    </nav>
 </div>
 
 <div class="wrapper row4">
@@ -364,6 +369,27 @@
 <!-- JAVASCRIPTS -->
 <script src="../script/jquery.backtotop.js"></script>
 <script>
+    function loadMore(value){
+        console.log("value: "+value);
+        $.ajax({
+            type: "get",
+            url: "/load",
+            data: {exits : value},
+
+            success: function (data) {
+
+
+                var row = document.getElementById("content");
+                row.innerHTML = data;
+                console.log('Submission was successful!!!');
+
+            },
+            error: function (data) {
+                console.log('An error occurred.');
+                console.log(data);
+            },
+        });
+    }
     $(document).ready(function () {
         $(window).scroll(function () {
             if ($(this).scrollTop() > 150) {

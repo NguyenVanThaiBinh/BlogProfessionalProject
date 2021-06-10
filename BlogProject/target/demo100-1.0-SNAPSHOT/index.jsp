@@ -1,4 +1,4 @@
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +15,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="css/layout.css" rel="stylesheet" type="text/css" media="all"/>
     <link
-            href="css/fontawesome-all.min.css"
             rel="stylesheet"
-            type="text/css"
-            media="all"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link
             href="css/framework.css"
@@ -27,22 +25,22 @@
             media="all"
     />
 
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link
             href="css/OverWrite.css"
             rel="stylesheet"
             type="text/css"
             media="all"
     />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         .row:after {
             content: "";
             display: table;
             clear: both;
         }
+
         .column {
             float: left;
             width: 50%;
@@ -245,7 +243,7 @@
                     <a href="#"><i class="fas fa-street-view"></i></a>
                     <h6 class="heading">Play hide and seek</h6>
                     <p>
-                       In the activity is play hide and seek, it like a child but we like that [&hellip;]
+                        In the activity is play hide and seek, it like a child but we like that [&hellip;]
                     </p>
                     <footer>
                         <a class="btn" href="#"
@@ -259,7 +257,7 @@
                     <a href="#"><i class="fas fa-volleyball-ball"></i></a>
                     <h6 class="heading">Play volleyballs</h6>
                     <p>
-                       In the beach, we always do that anytime we have, it's good for your healthy [&hellip;]
+                        In the beach, we always do that anytime we have, it's good for your healthy [&hellip;]
                     </p>
                     <footer>
                         <a class="btn" href="#"
@@ -280,26 +278,27 @@
                 You can enjoy at anything in here, more and more
             </p>
         </div>
-        <div id="latest_1" class="group">
-            <div class="row">
-                <c:forEach begin="0" end="3" var="user" items="${PostUpList}">
-                    <div class="column">
+        <div  class="group">
+            <div id="content" class="row">
+                <c:forEach var="user" items="${PostUpList}">
+                    <div  class=" product column">
                         <article style="margin-bottom: 5em">
                             <a class="imgover" href="#">
                                 <img style="width: 546px; height: 410px" src="${user.img_path}" alt="image"/>
                             </a>
                             <div class="excerpt">
                                 <h6 class="heading">${user.title}</h6>
-                                <p>${user.img_dres}  [&hellip;]</p>
+                                <p>${user.img_dres} [&hellip;]</p>
                                 <div class="clear">
                                     <footer class="fl_right">
 
-                                        <a href="read-more?id=${user.id}" style="margin-right: 5em; ">Read More <i class="fas fa-angle-right"></i></a>
+                                        <a href="read-more?id=${user.id}" style="margin-right: 5em; ">Read More <i
+                                                class="fas fa-angle-right"></i></a>
                                     </footer>
                                     <ul class="nospace meta fl_left">
                                         <li><i class="fas fa-user"></i> <a href="#">By User ID: ${user.idUser} </a></li>
                                         <li><i class="fas fa-tag"></i> <a href="#">Tag Name</a></li>
-                                        <li>Create at:  ${user.createday} </li>
+                                        <li>Create at: ${user.createday} </li>
                                     </ul>
                                 </div>
                             </div>
@@ -308,31 +307,18 @@
                 </c:forEach>
             </div>
 
+
         </div>
         <br><br>
-        <footer class="center">
-            <a class="btn" href="#"
-            >View More Posts <i class="fas fa-angle-right"></i
-            ></a>
-        </footer>
+
     </section>
     <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="page_2">2</a></li>
-            <li class="page-item"><a class="page-link" href="page_3">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
+        <ul class="pagination" style="margin:  auto;width: 0%;padding-bottom: 2em;">
+
+            <c:forEach begin="1" end="${endP}" var="i">
+                <button style="margin-right: 1em;" class="page-item btn btn-primary " id="${(i-1)*4}" value="${(i-1)*4}" onclick="loadMore(this.value)">${i}</button>
+
+            </c:forEach>
         </ul>
     </nav>
 </div>
@@ -361,7 +347,7 @@
         <div class="one_quarter">
             <h6 class="heading">We always waiting for you!</h6>
             <p class="nospace btmspace-30">
-               Don't me shy to come with us, you can do any thing!
+                Don't me shy to come with us, you can do any thing!
             </p>
         </div>
     </footer>
@@ -372,6 +358,31 @@
 <!-- JAVASCRIPTS -->
 <script src="script/jquery.backtotop.js"></script>
 <script>
+    function loadMore(value){
+        $("#value").css({"background-color": "yellow"});
+
+        console.log("value: "+value);
+        $.ajax({
+            type: "get",
+            url: "/load",
+            data: {exits : value},
+
+            success: function (data) {
+
+
+                var row = document.getElementById("content");
+                row.innerHTML = data;
+                console.log('Submission was successful!!!');
+
+            },
+            error: function (data) {
+                console.log('An error occurred.');
+                console.log(data);
+            },
+        });
+    }
+
+
     $(document).ready(function () {
         $(window).scroll(function () {
             if ($(this).scrollTop() > 150) {

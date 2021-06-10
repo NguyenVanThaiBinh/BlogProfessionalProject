@@ -113,7 +113,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
-                   
+
                     <th>Image Description</th>
                     <th>Create Day</th>
 

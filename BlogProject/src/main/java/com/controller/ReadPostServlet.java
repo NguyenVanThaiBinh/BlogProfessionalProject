@@ -14,7 +14,7 @@ public class ReadPostServlet extends HttpServlet {
     static PostConnect postConnect = new PostConnect();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Post> postList = postConnect.upPost4();
+        List<Post> postList = postConnect.selectAllPostManage();
         int id = Integer.parseInt(request.getParameter("id"));
         for (Post post: postList) {
             if(post.getId() == id){

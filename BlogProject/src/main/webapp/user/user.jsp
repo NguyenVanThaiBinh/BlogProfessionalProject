@@ -62,7 +62,7 @@
                 <a href="https://www.google.com/" title="Help Centre"><i class="far fa-life-ring"></i></a>
             </li>
             <li>
-                <a href="register-blog" title="Logout"><i class="fas fa-sign-in-alt"></i></a>
+                <a href="home" title="Logout"><i class="fas fa-sign-in-alt"></i></a>
             </li>
             <li>
                 <a href="login-blog" title="Sign Up"><i class="fas fa-edit"></i></a>

@@ -26,15 +26,17 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <link
-            href="css/OverWrite.css"
-            rel="stylesheet"
-            type="text/css"
-            media="all"
-    />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        @media screen and (max-width: 414px){
+             article {
+                 display: none !important;
+             }
+        }
+    </style>
 
 </head>
 <body>
@@ -53,7 +55,7 @@
 
         </div>
         <div class="panel-body">
-            <form method="post" style="float: right" id="usrform">
+            <form method="post" id="usrform">
                 <div class="form-group">
                     <label for="title">Title:</label>
 
@@ -89,8 +91,9 @@
                 <a style="color: white" href="user-blog" class="btn btn-primary">Back to page</a>
 
             </form>
+            <br><br>
 
-            <article style="float: left" class="one_half first">
+            <article id="article"  class="one_half first">
                 <%
                 String title = (String) request.getAttribute("title");
                 String description = (String) request.getAttribute("description");

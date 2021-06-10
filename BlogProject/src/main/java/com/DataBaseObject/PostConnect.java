@@ -36,24 +36,70 @@ public class PostConnect {
                     " `img_path` = ? WHERE (`id` = ?);";
 
     private static final String SELECT_ALL_POST_MANAGE =
-            "SELECT * FROM `blog-manage`.postmanage;";
+            "SELECT * FROM `blog-manage`.postmanage ;";
 
     private static final String UPDATE_POST_STATUS =
             "UPDATE postmanage SET `status` = ? WHERE (`id` = ?);";
 
     private static final String UP_POST_4 =
-            "select * from postmanage \n" +
-                    "where postmanage.status = 1\n" +
-                    "order by id DESC\n" +
-                    "limit 12;";
+            "SELECT * FROM postmanage where status = 1 ORDER BY ID desc  LIMIT 4 OFFSET ?;";
 
-    public List<Post> upPost4(){
+    public List<Post> upPost4( ){
+        List<Post> postList = new ArrayList<>();
+        // Step 1: Establishing a Connection
+        try (Connection connection = getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement( "SELECT * FROM `blog-manage`.postmanage ORDER BY  ID desc  LIMIT 4;");) {
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int idUser = rs.getInt("id_user");
+
+                String description = rs.getString("img_dres");
+                String title = rs.getString("title");
+                String img_path = rs.getString("img_path");
+
+                String content = rs.getString("content");
+                String create_day = rs.getString("create_day");
+                int status = rs.getInt("status");
+
+                Post post = new Post(id, img_path, description, title, content, create_day, idUser, status);
+                postList.add(post);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode());
+        }
+        return postList;
+    }
+
+    public int getToTalPost(){
+        String query = "SELECT COUNT(*) FROM postmanage where status = 1;";
+        try(Connection connection = getConnection();
+        PreparedStatement ps = connection.prepareStatement(query );
+        ){
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                return rs.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+    public List<Post> upPost4( int amount){
         List<Post> postList = new ArrayList<>();
         // Step 1: Establishing a Connection
         try (Connection connection = getConnection();
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(UP_POST_4);) {
+            preparedStatement.setInt(1,amount);
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
