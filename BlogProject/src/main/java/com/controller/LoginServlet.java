@@ -20,10 +20,7 @@ public class LoginServlet extends HttpServlet {
         request.setAttribute("addMsg", "");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
         requestDispatcher.forward(request, response);
-
-
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

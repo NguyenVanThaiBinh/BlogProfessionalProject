@@ -128,9 +128,10 @@
                         <td>${user.createday}</td>
                         <c:if test = "${user.status == 1}">
                             <td><a class="btn btn-outline-primary" href="/post-manage?action=check&id=${user.id}&status=${user.status}">Checked</a></td>
-                        </c:if><c:if test = "${user.status == 0}">
+                        </c:if>
+                        <c:if test = "${user.status == 0}">
                         <td><a class="btn btn-outline-danger" href="/post-manage?action=check&id=${user.id}&status=${user.status}">Not Checked</a></td>
-                    </c:if>
+                         </c:if>
 
 
 

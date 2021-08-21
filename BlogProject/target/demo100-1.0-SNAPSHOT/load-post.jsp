@@ -1,84 +1,105 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 6/9/2021
-  Time: 9:09 PM
-  To change this template use File | Settings | File Templates.
+<%@ page import="com.model.Account" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
+    Document   : add
+    Created on : Aug 17, 2020, 8:22:48 PM
+    Author     : Diep
 --%>
+
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
-
-    <title>Post List</title>
-    <meta charset="utf-8"/>
-
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <script src="jquery-3.5.1.min.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="css/layout.css" rel="stylesheet" type="text/css" media="all"/>
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-    <link
-            href="css/framework.css"
-            rel="stylesheet"
-            type="text/css"
-            media="all"
-    />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link
-            href="css/OverWrite.css"
-            rel="stylesheet"
-            type="text/css"
-            media="all"
-    />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title> User Manage</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+            integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <style>
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
+        .header a {
+            position: relative;
+            display: inline-block;
+            font-family: "Great Vibes", serif;
+            font-size: 2.9vw;
+            text-decoration: none;
+            color: rgb(102, 153, 255);
         }
 
-        .column {
-            float: left;
-            width: 50%;
+        .header a:hover::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            /* Adjust height and bottom values to work with selected font */
+            height: .05em;
+            bottom: .1em;
+            /* Create gradient */
+            background-image: linear-gradient(
+                    to right,
+                    transparent 0%,
+                    rgba(102, 153, 255, .6) 30%,
+                    rgba(102, 153, 255, .7) 50%,
+                    rgba(102, 153, 255, .6) 70%,
+                    transparent 100%
+            );
+            /* Set-up fade-in animation */
+            opacity: 0;
+            animation: fadeIn 400ms ease-out forwards;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            100% {
+                opacity: 1;
+            }
         }
     </style>
+
 </head>
 <body>
-<c:forEach var="user" items="${postList}">
-    <div  class=" product column">
-        <article style="margin-bottom: 5em">
-            <a class="imgover" href="#">
-                <img style="width: 546px; height: 410px" src="${user.img_path}" alt="image"/>
-            </a>
-            <div class="excerpt">
-                <h6 class="heading">${user.title}</h6>
-                <p>${user.img_dres} [&hellip;]</p>
-                <div class="clear">
-                    <footer class="fl_right">
 
-                        <a href="read-more?id=${user.id}" style="margin-right: 5em; ">Read More <i
-                                class="fas fa-angle-right"></i></a>
-                    </footer>
-                    <ul class="nospace meta fl_left">
-                        <li><i class="fas fa-user"></i> <a href="#">By User ID: ${user.idUser} </a></li>
-                        <li><i class="fas fa-tag"></i> <a href="#">Tag Name</a></li>
-                        <li>Create at: ${user.createday} </li>
-                    </ul>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-body" style="text-align: center">
+            <c:forEach var="user" items="${postList}">
+                <div  class=" product column">
+                    <article style="margin-bottom: 5em">
+                        <a class="imgover" href="#">
+                            <img style="width: 546px; height: 410px" src="${user.img_path}" alt="image"/>
+                        </a>
+                        <div class="excerpt">
+                            <h6 class="heading">${user.title}</h6>
+                            <p>${user.img_dres} [&hellip;]</p>
+                            <div class="clear">
+                                <footer class="fl_right">
+
+                                    <a href="read-more?id=${user.id}" style="margin-right: 5em; ">Read More <i
+                                            class="fas fa-angle-right"></i></a>
+                                </footer>
+                                <ul class="nospace meta fl_left">
+                                    <li><i class="fas fa-user"></i> <a href="#">By User ID: ${user.idUser} </a></li>
+                                    <li><i class="fas fa-tag"></i> <a href="#">Tag Name</a></li>
+                                    <li>Create at: ${user.createday} </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-            </div>
-        </article>
+            </c:forEach>
+        </div>
+
     </div>
-</c:forEach>
+</div>
 </body>
+
+
+
 </html>

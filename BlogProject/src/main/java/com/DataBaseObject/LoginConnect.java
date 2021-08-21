@@ -13,16 +13,16 @@ public class LoginConnect {
     public LoginConnect() {
     }
 
-    private static String jdbcURL = "jdbc:mysql://localhost:3306/blog-manage";
-    private static String jdbcUsername = "root";
-    private static String jdbcPassword = "Toilaai123!";
+    private static String jdbcURL = "jdbc:mysql://kfgk8u2ogtoylkq9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/s20sg0j8h4j99oda";
+    private static String jdbcUsername = "uyblqz0wa0s04lu7";
+    private static String jdbcPassword = "i1ozm87u0uqiisce";
 
     private static final String INSERT_USERS_SQL = "INSERT INTO account" + "  (username, password, email, name)" +
             " VALUES " +
             " (?, ?, ?, ?);";
 
     private static final String SELECT_USER_BY_ID = "select id,username,password,email,name from account where id =?";
-    private static final String SELECT_ALL_USERS = "select * from account";
+    private static final String SELECT_ALL_USERS = "select * from account order by id desc ";
 
     private static final String DELETE_USERS_SQL = "delete from account where id = ?;";
 
@@ -33,6 +33,51 @@ public class LoginConnect {
 
     private static final String RESET_PASSWORD =
             "UPDATE account SET `password` = ? WHERE (`id` = ?);";
+    public int getIDbyuser(String userName)  {
+        int id = 0;
+        String query ="select id from account where username = ?;";
+        Connection connection = getConnection();
+        // Step 2:Create a statement using connection object
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            preparedStatement.setString(1, userName);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        ResultSet rs = null;
+        try {
+            rs = preparedStatement.executeQuery();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        while (true) {
+            try {
+                if (!rs.next()) break;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            try {
+                id = rs.getInt("id");
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+        }
+
+        return id;
+    }
+
 
     public void setOffForeginKey() throws SQLException {
         Connection connection = getConnection();
@@ -184,7 +229,7 @@ public class LoginConnect {
             Class.forName("com.mysql.jdbc.Driver");
             // nap chong phuong thuc
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-            System.out.println("connect successfully!");
+
         } catch (SQLException e) {
             System.out.println("connect failure!");
             // TODO Auto-generated catch block
@@ -192,6 +237,7 @@ public class LoginConnect {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println("connect success!!");
         return connection;
     }
 

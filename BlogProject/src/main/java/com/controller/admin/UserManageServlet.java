@@ -62,8 +62,6 @@ public class UserManageServlet extends HttpServlet {
         String msg = "Delete complete!";
         request.setAttribute("msg",msg);
 
-        List<Account> accountList = loginConnect.selectAllUsers();
-        request.setAttribute("accountList",accountList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/user-manage.jsp");
         dispatcher.forward(request, response);
     }

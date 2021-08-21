@@ -13,7 +13,7 @@ public class PostConnect {
 
     private static String jdbcURL = "jdbc:mysql://localhost:3306/blog-manage";
     private static String jdbcUsername = "root";
-    private static String jdbcPassword = "Toilaai123!";
+    private static String jdbcPassword = "admin";
 
 
     private static final String INSERT_POST_SQL = "INSERT INTO postmanage"

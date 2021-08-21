@@ -279,7 +279,7 @@
             </p>
         </div>
         <div  class="group">
-            <div id="content" class="row">
+            <div id="content-load" class="row">
                 <c:forEach var="user" items="${PostUpList}">
                     <div  class=" product column">
                         <article style="margin-bottom: 5em">
@@ -368,9 +368,10 @@
             data: {exits : value},
 
             success: function (data) {
+    // data này là cả cái servlet luôn, chứ kp một giá trị
 
 
-                var row = document.getElementById("content");
+                var row = document.getElementById("content-load");
                 row.innerHTML = data;
                 console.log('Submission was successful!!!');
 
