@@ -1,12 +1,11 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="demo100:war exploded">
-    <output-path>$PROJECT_DIR$/BlogProject/target/demo100-1.0-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/target/demo100-1.0-SNAPSHOT</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
         <module>demo100</module>
         <packaging>war</packaging>
-        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -63,8 +62,8 @@
           <element id="library" level="project" name="Maven: org.webjars.npm:forever-agent:0.6.1" />
           <element id="library" level="project" name="Maven: org.webjars.npm:uuid:3.4.0" />
           <element id="library" level="project" name="Maven: org.webjars.npm:json-stringify-safe:5.0.1" />
-          <element id="library" level="project" name="Maven: org.webjars.npm:mime-types:2.1.32" />
-          <element id="library" level="project" name="Maven: org.webjars.npm:mime-db:1.49.0" />
+          <element id="library" level="project" name="Maven: org.webjars.npm:mime-types:2.1.31" />
+          <element id="library" level="project" name="Maven: org.webjars.npm:mime-db:1.48.0" />
           <element id="library" level="project" name="Maven: org.glassfish:javax.json:1.0.4" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.21" />
@@ -72,7 +71,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/BlogProject/target/demo100-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/demo100-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="demo100/web/Web" />
     </root>
